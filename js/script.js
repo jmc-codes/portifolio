@@ -1,58 +1,60 @@
-// 🌟 Navegação suave
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
+// ===============================
+// Mobile Menu Toggle
+// ===============================
+const mobileToggle = document.querySelector(".mobile-toggle");
+const nav = document.querySelector(".nav");
+
+mobileToggle.addEventListener("click", () => {
+  nav.classList.toggle("open");
+});
+
+// Fecha o menu ao clicar em link no mobile
+document.querySelectorAll(".nav a").forEach(link => {
+  link.addEventListener("click", () => {
+    nav.classList.remove("open");
   });
 });
 
-// 🎬 Animações de entrada
+// ===============================
+// Dark Mode Toggle
+// ===============================
+const themeToggle = document.querySelector(".theme-toggle");
+const body = document.body;
+
+// Aplica tema escuro se já estiver salvo
+if (localStorage.getItem("theme") === "dark") {
+  body.classList.add("dark");
+  themeToggle.textContent = "☀️";
+} else {
+  themeToggle.textContent = "🌙";
+}
+
+themeToggle.addEventListener("click", () => {
+  body.classList.toggle("dark");
+
+  if (body.classList.contains("dark")) {
+    themeToggle.textContent = "☀️";
+    localStorage.setItem("theme", "dark");
+  } else {
+    themeToggle.textContent = "🌙";
+    localStorage.setItem("theme", "light");
+  }
+});
+
+// ===============================
+// Scroll Animations (Intersection Observer)
+// ===============================
+const sections = document.querySelectorAll(".section");
+
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.classList.add('animate');
+      entry.target.classList.add("animate");
+      observer.unobserve(entry.target); // anima só uma vez
     }
   });
-}, {
-  threshold: 0.1
-});
+}, { threshold: 0.2 });
 
-document.querySelectorAll('.section, .card').forEach(el => observer.observe(el));
-
-// 📩 Validação de formulário (se houver)
-const form = document.querySelector('form');
-if (form) {
-  form.addEventListener('submit', function(e) {
-    const email = form.querySelector('input[type="email"]');
-    const name = form.querySelector('input[name="name"]');
-    if (!email.value || !name.value) {
-      e.preventDefault();
-      alert('Por favor, preencha todos os campos obrigatórios.');
-    }
-  });
-}
-
-// 🌙 Alternância de tema claro/escuro
-const toggleTheme = document.createElement('button');
-toggleTheme.textContent = '🌙';
-toggleTheme.className = 'theme-toggle';
-document.body.appendChild(toggleTheme);
-
-toggleTheme.addEventListener('click', () => {
-  document.body.classList.toggle('dark');
-  toggleTheme.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
-});
-
-// 📱 Menu responsivo
-const nav = document.querySelector('.nav');
-const mobileToggle = document.createElement('button');
-mobileToggle.className = 'mobile-toggle';
-mobileToggle.textContent = '☰';
-document.querySelector('.header').appendChild(mobileToggle);
-
-mobileToggle.addEventListener('click', () => {
-  nav.classList.toggle('open');
+sections.forEach(section => {
+  observer.observe(section);
 });
