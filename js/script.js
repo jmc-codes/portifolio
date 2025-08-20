@@ -1,107 +1,58 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // Cache 
-  const header     = document.querySelector(".header");
-  const navToggle  = document.querySelector(".nav__toggle");
-  const navList    = document.querySelector(".nav__list");
-  const navLinks   = navList.querySelectorAll('a[href^="#"]');
-  const cards      = document.querySelectorAll(".card");
-  const sections   = document.querySelectorAll("section[id]");
-  const backToTop  = initBackToTopButton();
+// 🌟 Navegação suave
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
 
-  // Rolagem suave + fechar menu móvel ao clicar
-  navLinks.forEach(link => {
-    link.addEventListener("click", e => {
+// 🎬 Animações de entrada
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('animate');
+    }
+  });
+}, {
+  threshold: 0.1
+});
+
+document.querySelectorAll('.section, .card').forEach(el => observer.observe(el));
+
+// 📩 Validação de formulário (se houver)
+const form = document.querySelector('form');
+if (form) {
+  form.addEventListener('submit', function(e) {
+    const email = form.querySelector('input[type="email"]');
+    const name = form.querySelector('input[name="name"]');
+    if (!email.value || !name.value) {
       e.preventDefault();
-      const target = document.querySelector(link.getAttribute("href"));
-      if (target) target.scrollIntoView({ behavior: "smooth" });
-      navList.classList.remove("open");
-    });
+      alert('Por favor, preencha todos os campos obrigatórios.');
+    }
   });
+}
 
-  // navegação móvel
-  navToggle.addEventListener("click", () => {
-    navList.classList.toggle("open");
-  });
+// 🌙 Alternância de tema claro/escuro
+const toggleTheme = document.createElement('button');
+toggleTheme.textContent = '🌙';
+toggleTheme.className = 'theme-toggle';
+document.body.appendChild(toggleTheme);
 
-  // Cabeçalho fixo, botão voltar ao topo e scroll-spy
-  window.addEventListener("scroll", throttle(() => {
-    const y = window.scrollY;
-    header.classList.toggle("scrolled", y > 50);
-    backToTop.toggle(y > 300);
-    scrollSpy();
-  }, 100));
+toggleTheme.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  toggleTheme.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+});
 
-  // aparecer cartas ao rolar
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(({ isIntersecting, target }) => {
-      if (isIntersecting) {
-        target.classList.add("visible");
-        obs.unobserve(target);
-      }
-    });
-  }, { threshold: 0.2 });
-  cards.forEach(card => observer.observe(card));
+// 📱 Menu responsivo
+const nav = document.querySelector('.nav');
+const mobileToggle = document.createElement('button');
+mobileToggle.className = 'mobile-toggle';
+mobileToggle.textContent = '☰';
+document.querySelector('.header').appendChild(mobileToggle);
 
-  // clique para voltar ao topo
-  backToTop.btn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-
-  // link de navegação na janela ativa
-  function scrollSpy() {
-    const mid = window.scrollY + window.innerHeight / 2;
-    sections.forEach(sec => {
-      const top    = sec.offsetTop;
-      const bottom = top + sec.offsetHeight;
-      const id     = sec.id;
-      const link   = document.querySelector(`.nav__list a[href="#${id}"]`);
-      if (link) {
-        link.classList.toggle("active", mid >= top && mid < bottom);
-      }
-    });
-  }
-
-  // acelerador
-  function throttle(fn, wait) {
-    let last = 0;
-    return (...args) => {
-      const now = Date.now();
-      if (now - last >= wait) {
-        fn(...args);
-        last = now;
-      }
-    };
-  }
-
-  // criar e gerenciar um botão Voltar ao topo
-  function initBackToTopButton() {
-    const btn = document.createElement("button");
-    btn.className = "back-to-top";
-    btn.textContent = "↑";
-    Object.assign(btn.style, {
-      position:    "fixed",
-      bottom:      "2rem",
-      right:       "2rem",
-      width:       "3rem",
-      height:      "3rem",
-      border:      "none",
-      borderRadius:"50%",
-      background:  "var(--color-accent)",
-      color:       "var(--color-light)",
-      fontSize:    "1.5rem",
-      opacity:     "0",
-      visibility:  "hidden",
-      transition:  "opacity 0.3s, visibility 0.3s",
-      cursor:      "pointer",
-      zIndex:      "1000"
-    });
-    document.body.appendChild(btn);
-    return {
-      btn,
-      toggle(show) {
-        btn.style.visibility = show ? "visible" : "hidden";
-        btn.style.opacity    = show ? "1"       : "0";
-      }
-    };
-  }
+mobileToggle.addEventListener('click', () => {
+  nav.classList.toggle('open');
 });
