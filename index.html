@@ -8,93 +8,150 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet"> <!-- Styles -->
+    
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+
 </head>
 
-<body> <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <h1 class="logo">Johnathan Campos</h1>
-            <nav class="nav">
-                <ul>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container grid grid-cols-12 gap-4 mx-auto">
+            <a href="" class="logo col-span-4">Johnathan<span class="logo-accent">Campos</span></a>
+            <nav class="nav col-span-6 hidden md:flex justify-end">
+                <ul class="flex space-x-4">
                     <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#experiencia">Experiência</a></li>
-                    <li><a href="#formacao">Formação</a></li>
-                    <li><a href="#competencias">Competências</a></li>
+                    <li><a href="#projetos">Projetos</a></li>
+                    <li><a href="#skills">Skills</a></li>
                     <li><a href="#contato">Contato</a></li>
                 </ul>
-            </nav> <button class="mobile-toggle">☰</button>
+            </nav>
+            <button class="mobile-toggle md:hidden">☰</button>
         </div>
-    </header> <!-- Hero -->
+    </header>
+
+    <!-- Hero -->
     <section class="hero fade-in">
-        <div class="container">
-            <h2>Analista de Dados | Business Intelligence | Analytics</h2>
-            <p>Transformando dados em insights estratégicos para negócios de grande porte.</p> 
-            <!-- <a href="#contato" class="cta">Vamos conversar</a> -->
-        </div>
-        <div class="scroll-down">↓</div>
-    </section>
-    <main> <!-- Sobre -->
-        <section id="sobre" class="section fade-up">
-            <h2>Resumo Profissional</h2>
-            <p> Profissional de tecnologia com mais de 7 anos de experiência em Engenharia de Dados, BI, ETL e Sistemas
-                de Pagamento, atuando em ambientes corporativos de grande porte. Especialista em integração de dados,
-                automação de processos, modelagem de pipelines e análise avançada de informações, com histórico
-                comprovado de otimização de fluxos, redução de falhas críticas e suporte a decisões estratégicas de
-                negócios. </p>
-            <p> Certificado em Python, SQL, Power BI, Banco de Dados e VBA, com forte experiência em monitoramento de
-                sistemas de alta disponibilidade, criação de dashboards gerenciais e suporte a plataformas financeiras
-                complexas. </p>
-        </section> <!-- Experiência -->
-        <section id="experiencia" class="section fade-up">
-            <h2>Experiência Profissional</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <h3>Fiserv – São Paulo, SP</h3> <span>Systems Support – Professional II | Nov 2023 – Atual</span>
-                    <ul>
-                        <li>Desenvolvi e otimizei pipelines de dados em Python e SQL, reduzindo falhas críticas em até
-                            30%.</li>
-                        <li>Implementei automações que economizaram 15h semanais em tarefas manuais.</li>
-                        <li>Atuei em integrações de dados financeiros de grande escala, garantindo compliance.</li>
-                        <li>Colaborei com engenheiros de dados e arquitetos para definir padrões de qualidade e
-                            segurança.</li>
-                    </ul>
-                </div>
-                <div class="timeline-item"> <span>Systems Support | Out 2020 – Nov 2023</span>
-                    <ul>
-                        <li>Liderei implantação de monitoramento em tempo real, reduzindo falhas em 25%.</li>
-                        <li>Apoiei projetos de migração e integração de sistemas críticos.</li>
-                        <li>Realizei análises de logs e KPIs que embasaram decisões estratégicas de TI.</li>
-                    </ul>
-                </div>
-                <div class="timeline-item">
-                    <h3>Software Express – São Paulo, SP</h3> <span>Assistente de Licenciamento/Ativação | Nov 2018 –
-                        Out 2020</span>
-                    <ul>
-                        <li>Automatizei processos de ativação/licenciamento, reduzindo erros em 15%.</li>
-                        <li>Extração e cruzamento de dados para relatórios gerenciais.</li>
-                        <li>Contribuí para integração de sistemas de pagamento com segurança.</li>
-                    </ul>
-                </div>
-                <div class="timeline-item"> <span>Jovem Aprendiz | Jun 2016 – Nov 2017</span>
-                    <ul>
-                        <li>Suporte técnico e administrativo em documentação e infraestrutura de TI.</li>
-                    </ul>
-                </div>
+
+        <section class="row">
+            
+            <div class="col-sm-8">
+                <h2>Analista de Dados | Business Intelligence | Analytics</h2>
+                <p>Transformando dados em insights estratégicos para negócios.</p>
+                <!-- <a href="#contato" class="cta">Vamos conversar</a> -->
             </div>
-        </section> <!-- Formação -->
-        <section id="formacao" class="section fade-up">
+
+            <div class="col-sm-4">
+                <img src="img/landingpage.png" class="img-thumbnail" alt="" >
+            </div>
+        </section>
+
+        <div class="scroll-down">↓</div>
+
+    </section>
+
+
+
+    <main> <!-- Sobre -->
+
+        <section id="sobre" class="section fade-up container-sm d-flex w-200 h-200 p-3 mx-auto flex-column">
+            <h2>Resumo Profissional</h2>
+            <article class="px-3">
+
+                <p class="lead">Profissional de tecnologia com mais de 7 anos de experiência em Dados, BI, ETL e Sistemas
+                    de Pagamento,
+                    atuando em ambientes corporativos de grande porte. Foco integração de dados, automação de
+                    processos, por exemplo com Power Automate,
+                    desenvolvimento de soluções low-code em Power Apps, criação de dashboards interativos no Power BI,
+                    modelagem de pipelines e análise avançada de informações,
+                    com histórico comprovado de otimização de fluxos, visualização e redução de falhas críticas, suporte
+                    a decisões
+                    estratégicas de negócios.
+                </p>
+
+                <p class="lead">Certificado em Python, SQL, Power BI, Power Automate e Power Apps, Banco de Dados e VBA, com forte
+                    experiência em monitoramento de sistemas de alta disponibilidade, automação de relatórios e
+                    workflows,
+                    desenvolvimento de apps corporativos e suporte a plataformas financeiras complexas.
+                </p>
+
+            </article>
+
+            
+
+        </section> 
+
+        
+        <!-- Experiência -->
+<section id="experiencia" class="section fade-up container-sm">
+    <h2 class="text-center">Experiência Profissional</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <h3 class="text-center">Fiserv – São Paulo, SP</h3>
+            <span class="d-block text-center">Systems Support – Professional II | Nov 2023 – Atual</span>
+            <ul>
+                <li>Desenvolvi e otimizei pipelines de dados em Python e SQL, reduzindo falhas críticas em até 30%.</li>
+                <li>Implementei automações que economizaram 15h semanais em tarefas manuais.</li>
+                <li>Atuei em integrações de dados financeiros de grande escala, garantindo compliance.</li>
+                <li>Colaborei com engenheiros de dados e arquitetos para definir padrões de qualidade e segurança.</li>
+            </ul>
+        </div>
+        <div class="timeline-item">
+            <span class="d-block text-center">Systems Support | Out 2020 – Nov 2023</span>
+            <ul>
+                <li>Liderei implantação de monitoramento em tempo real, reduzindo falhas em 25%.</li>
+                <li>Apoiei projetos de migração e integração de sistemas críticos.</li>
+                <li>Realizei análises de logs e KPIs que embasaram decisões estratégicas de TI.</li>
+            </ul>
+        </div>
+        <div class="timeline-item">
+            <h3 class="text-center">Software Express – São Paulo, SP</h3>
+            <span class="d-block text-center">Assistente de Licenciamento/Ativação | Nov 2018 – Out 2020</span>
+            <ul>
+                <li>Automatizei processos de ativação/licenciamento, reduzindo erros em 15%.</li>
+                <li>Extração e cruzamento de dados para relatórios gerenciais.</li>
+                <li>Contribuí para integração de sistemas de pagamento com segurança.</li>
+            </ul>
+        </div>
+        <div class="timeline-item">
+            <span class="d-block text-center">Jovem Aprendiz | Jun 2016 – Nov 2017</span>
+            <ul>
+                <li>Suporte técnico e administrativo em documentação e infraestrutura de TI.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+        
+        
+        
+        <!-- Formação -->
+        <section id="formacao" class="section fade-up  container-sm mx-auto text-center">
             <h2>Formação Acadêmica</h2>
             <ul>
                 <li>🎓 Universidade Cruzeiro do Sul – Graduação em Análise e Desenvolvimento de Sistemas (2019 – 2021)
                 </li>
                 <li>🎓 Senac Brasil – Formação em Hardware (2017)</li>
             </ul>
-        </section> <!-- Competências -->
-        <section id="competencias" class="section fade-up">
+        </section> 
+        
+        
+        <!-- Competências -->
+        <section id="competencias" class="section fade-up container-sm">
             <h2>Competências</h2>
             <div class="grid">
-                <div class="card">
+                <div class="card border-white">
                     <h3>Engenharia de Dados & BI</h3>
                     <ul>
                         <li>ETL (Extração, Transformação e Carga)</li>
@@ -104,7 +161,7 @@
                         <li>Integração de APIs e Sistemas de Pagamento</li>
                     </ul>
                 </div>
-                <div class="card">
+                <div class="card border-white">
                     <h3>Infraestrutura & Sistemas</h3>
                     <ul>
                         <li>Monitoramento de Sistemas Críticos</li>
@@ -113,7 +170,7 @@
                         <li>Migração e Integração de Sistemas</li>
                     </ul>
                 </div>
-                <div class="card">
+                <div class="card border-white">
                     <h3>Interpessoais & Gestão</h3>
                     <ul>
                         <li>Comunicação clara e objetiva</li>
@@ -124,36 +181,238 @@
                     </ul>
                 </div>
             </div>
-        </section> <!-- Idiomas -->
-        <section class="section fade-up">
+        </section> 
+        
+        
+        
+        <!-- Idiomas -->
+        <section class="section fade-up container-sm mx-auto text-center">
             <h2>Idiomas</h2>
             <p>Português: Nativo</p>
             <p>Inglês: Intermediário (fluência técnica para leitura, escrita e conversação profissional)</p>
-        </section> <!-- Certificações -->
-        <section class="section fade-up">
-            <h2>Certificações & Cursos</h2>
-            <ul>
-                <li>Programação em Python</li>
-                <li>Banco de Dados e SQL</li>
-                <li>Power BI</li>
-                <li>VBA para Excel</li>
-                <li>A Arte de Falar Bem (Comunicação Oral)</li>
-            </ul>
-        </section> <!-- Contato -->
-        <section id="contato" class="section fade-up">
-            <h2>Contato</h2>
-            <div class="contact-grid">
-                <p>📍 São Paulo – SP, Brasil</p>
-                <p>📱 (11) 98780-4513</p>
-                <p>✉️ <a href="mailto:johnathanmaravilha12@gmail.com">johnathanmaravilha12@gmail.com</a></p>
-                <p>🔗 <a href="https://linkedin.com/in/johnathan-campos-28782a148" target="_blank">LinkedIn</a></p>
+        </section> 
+        
+        
+        
+        <!-- Certificações -->
+        <section class="section fade-up container-sm progressbar-section">
+            <h2 class="text-center mb-4">Certificações & Cursos</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+                <div class="col">
+                    <div class="card h-100 text-center border-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Programação em Python</h5>
+                                <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar" data-width="99">99.9%</div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 text-center border-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Banco de Dados e SQL</h5>
+                            <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" data-width="99">99.9%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 text-center border-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Power BI</h5>
+                            <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" data-width="99">99.9%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 text-center border-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Power Apps</h5>
+                            <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" data-width="99">99.9%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 text-center border-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Power Automate</h5>
+                            <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" data-width="99">99.9%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 text-center border-white">
+                        <div class="card-body">
+                            <h5 class="card-title">VBA para Excel</h5>
+                            <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" data-width="99">99.9%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 text-center border-white">
+                        <div class="card-body">
+                            <h5 class="card-title">A Arte de Falar Bem (Comunicação Oral)</h5>
+                            
+                            <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" data-width="99">99.9%</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+
+            
+        </section>
+
+        
+
+       <!-- Projetos -->
+        <section id="projetos" class="section fade-up container">
+            <h2 class="text-center mb-4">Projetos</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+                <!-- Projeto 1: Power BI -->
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-white">
+                        <img src="img/projeto1.png" class="card-img-top" alt="Dashboard Financeiro">
+                        <div class="card-body">
+                            <h5 class="card-title">Dashboard Financeiro</h5>
+                            <p class="card-text">📊 Power BI, SQL, ETL — Insights em tempo real para decisões estratégicas.</p>
+                            <a href="https://github.com/..." class="btn btn-outline-primary" target="_blank">Ver Código</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projeto 2: Power Apps -->
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-white">
+                        <img src="img/projeto2.png" class="card-img-top" alt="App de Solicitações">
+                        <div class="card-body">
+                            <h5 class="card-title">App de Solicitações</h5>
+                            <p class="card-text">📱 Power Apps — Aplicativo para controle de demandas internas com integração ao SharePoint.</p>
+                            <a href="https://github.com/..." class="btn btn-outline-primary" target="_blank">Ver Código</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projeto 3: Power Automate -->
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-white">
+                        <img src="img/projeto3.png" class="card-img-top" alt="Automação de Aprovações">
+                        <div class="card-body">
+                            <h5 class="card-title">Automação de Aprovações</h5>
+                            <p class="card-text">⚙️ Power Automate — Fluxo automatizado para aprovações com notificações por e-mail.</p>
+                            <a href="https://github.com/..." class="btn btn-outline-primary" target="_blank">Ver Código</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projeto 4: Monitoramento de Logs -->
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-white">
+                        <img src="img/projeto4.png" class="card-img-top" alt="Monitoramento de Logs">
+                        <div class="card-body">
+                            <h5 class="card-title">Monitoramento de Logs</h5>
+                            <p class="card-text">🛠️ Python, SQL — Sistema de monitoramento com alertas para falhas críticas.</p>
+                            <a href="https://github.com/..." class="btn btn-outline-primary" target="_blank">Ver Código</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projeto 5: Automação de Relatórios -->
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-white">
+                        <img src="img/projeto5.png" class="card-img-top" alt="Automação de Relatórios">
+                        <div class="card-body">
+                            <h5 class="card-title">Automação de Relatórios</h5>
+                            <p class="card-text">📈 VBA, Excel — Geração automática de relatórios com envio por e-mail.</p>
+                            <a href="https://github.com/..." class="btn btn-outline-primary" target="_blank">Ver Código</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projeto 5: Automação de Relatórios -->
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-white">
+                        <img src="img/projeto5.png" class="card-img-top" alt="Automação de Relatórios">
+                        <div class="card-body">
+                            <h5 class="card-title">Automação de Relatórios</h5>
+                            <p class="card-text">📈 VBA, Excel — Geração automática de relatórios com envio por e-mail.</p>
+                            <a href="https://github.com/..." class="btn btn-outline-primary" target="_blank">Ver Código</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
+            
+
+        <!-- Contato -->
+        <section id="contato" class="py-5 bg-light container-fluid">
+            <div class="container-xl">
+                <h2 class="text-center mb-4">Contato</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-10">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-body">
+                                <ul class="list-unstyled fs-5">
+                                    <li class="mb-3">
+                                        <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+                                        São Paulo – SP, Brasil
+                                    </li>
+                                    <li class="mb-3">
+                                        <i class="bi bi-phone-fill text-success me-2"></i>
+                                        <a href="tel:+5511987804513" class="text-decoration-none text-dark">(11) 98780-4513</a>
+                                    </li>
+                                    <li class="mb-3">
+                                        <i class="bi bi-envelope-fill text-danger me-2"></i>
+                                        <a href="mailto:johnathanmaravilha12@gmail.com" class="text-decoration-none text-dark">johnathanmaravilha12@gmail.com</a>
+                                    </li>
+                                    <li>
+                                        <i class="bi bi-linkedin text-primary me-2"></i>
+                                        <a href="https://linkedin.com/in/johnathan-campos-28782a148" target="_blank" class="text-decoration-none text-dark">LinkedIn</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
     </main> <!-- Footer -->
     <footer class="footer">
         <p>© 2025 Johnathan Campos | Analista de Dados & BI</p>
-    </footer> <!-- Botão Dark Mode --> <button class="theme-toggle">🌙</button> <!-- Scripts -->
+    </footer> <!-- Botão Dark Mode --> <button id="themeToggle" class="theme-toggle">🌙</button> 
+    
+    <!-- Scripts -->
     <script src="js/script.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+   
+    
+
 </body>
 
 </html>
