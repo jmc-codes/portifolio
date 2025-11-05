@@ -1,0 +1,102 @@
+
+
+
+function get_dmn_arr(){
+    var url = '/user_sessions/domain_check.json'
+    domain_arr = [];
+    $.ajax({
+        type: "GET",
+        async: true,
+        data:{
+        },
+        url: url,//
+        dataType: "json",
+        success: function (dados) {
+            //console.log(this);
+            domain_arr = dados;
+            check_user($("#user_session_email").val());
+            check_user($("#user_email").val());
+        },
+        error: function (erro) {
+            console.log("Falha ao obter dados");
+        }
+    });
+}
+
+
+if((window.location.href.indexOf('/user_sessions')>-1)||(window.location.href.indexOf('/users')>-1)) {
+    var domain_arr = [];
+    get_dmn_arr();
+}
+
+
+function get_dmn_data(domain){
+    var url = '/user_sessions/domain_data.json'
+    var result = false;
+    $.ajax({
+        type: "GET",
+        async: false,
+        data:{
+            "domain":domain
+        },
+        url: url,
+        dataType: "json",
+        success: function (dados) {
+            //console.log(this);
+            result = dados;
+        },
+        error: function (erro) {
+            console.log("Falha ao obter dados");
+        }
+    });
+
+    return result;
+}
+
+function check_user(user){
+    if(!user){user="";}
+    if(!domain_arr){domain_arr=[];}
+    for(i=0;i < domain_arr.length; i++) {
+        //console.log(atob(domain_arr[i]));
+        if((domain_arr[i]!="")&&(user.indexOf(atob(domain_arr[i])) > -1)) {
+            var data = get_dmn_data(atob(domain_arr[i]));
+            var client_id = data.adfs_client_id;
+            var acct_id = data.type_id+"|"+data.id;
+            var response_type = "code";
+            var redirect_uri = "https://portal2.comnect.com.br/user_sessions/adfs_callback";
+            var response_mode = "fragment";
+            var scope = "openid";
+            //var resource = data.adfs_address+"/services/trust";
+            var resource = "https://portal2.comnect.com.br";
+            var username = $('#user_session_email').val();
+            var adfs_url = data.adfs_address+'/oauth2/Authorize?client_id=' + client_id + '&response_type=' + response_type + '&redirect_uri=' + redirect_uri + '&response_mode=' + response_mode + '&scope=' + scope + '&resource=' + resource + '&username=' + username+'&state='+acct_id;
+
+            $("[name*=password]").val("123").hide(); // users form
+
+            $("#forgot_password").hide();
+            // CHECK FOR ERRORS ON ADFS LOG ON THE SERVER
+            if(data.adfs_trusted_domain){
+                //adfsurl+="&prompt=none";
+                $("#user_session_email").attr("name","Username");
+                $("#user_session_password").attr("name","Password").show();
+                $("#new_user_session").attr("action",adfs_url);
+                $("#btn_submit").html('<input type="submit" name="commit" value="Entrar" class="btn btn-large btn-primary" data-disable-with="Entrar via Domínio Direto">');
+            }else{
+                $("#user_session_password").hide();
+                $("#btn_submit").html('<input type="button" onclick="window.location.href=\'' + adfs_url + '&prompt=login\';" value="Entrar Via Domínio" class="btn btn-large btn-primary" data-disable-with="Entrar Via Domínio">');
+            }
+
+            break;
+        } else if(window.location.href.indexOf('/users/authorizer_approval')>-1){
+            //do nothing
+        } else {
+            $("#new_user_session").attr("action","/user_sessions");
+            $("#user_session_email").attr("name","user_session[email]");
+            $("#user_session_password").attr("name","user_session[password]").show();
+            $("#forgot_password").show();
+            $("#btn_submit").html('<input type="submit" name="commit" value="Entrar" class="btn btn-large btn-primary" data-disable-with="Entrar">');
+
+            $("[name*=password]").val('').show(); //users form
+        }
+    }
+}
