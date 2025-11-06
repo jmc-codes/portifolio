@@ -1,0 +1,43 @@
+let
+    // 1️⃣ Parâmetros de login
+    urlLogin = "https://portal.comnect.com.br/api/login",
+    body = [
+        username = "seu_usuario_aqui",
+        password = "sua_senha_aqui"
+    ],
+
+    // 2️⃣ Faz a requisição POST para autenticar
+    LoginResponse = Json.Document(
+        Web.Contents(
+            urlLogin,
+            [
+                Content = Text.ToBinary(Uri.BuildQueryString(body)),
+                Headers = [
+                    #"Content-Type" = "application/x-www-form-urlencoded"
+                ],
+                ManualStatusHandling = {200, 400, 401, 403}
+            ]
+        )
+    ),
+
+    // 3️⃣ Extrai o token ou cookie retornado
+    token = LoginResponse[token],    // ou LoginResponse[data][token], depende do formato de resposta
+
+    // 4️⃣ Usa o token para buscar dados da página protegida
+    urlDados = "https://portal.comnect.com.br/api/dados",
+
+    DadosResponse = Json.Document(
+        Web.Contents(
+            urlDados,
+            [
+                Headers = [
+                    Authorization = "Bearer " & token
+                ]
+            ]
+        )
+    ),
+
+    // 5️⃣ Converte para tabela
+    DadosTabela = Table.FromRecords(DadosResponse)
+in
+    DadosTabela
