@@ -1,6 +1,19 @@
-resale_id = params[:resale_id].to_i
+curl --location 'https://portal.comnect.com.br/user_sessions' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'user_session%5Bemail%5D=johnathan.maravilhacampos@fiserv.com' \
+--data-urlencode 'user_session%5Bpassword%5D=mudar123'
+
+
+NoMethodError in HomeController#dashboard2
+undefined method `type_id' for nil:NilClass
+Extracted source (around line #2311):
+
+              
+    resale_id = params[:resale_id].to_i
 
     if(current_user.type_id==1&&distributor_id==0)then
       distributor_id = 127
       resale_id = 999999 if resale_id==0
     end
+
+Rails.root: /home/portal/comnect
