@@ -1,15 +1,17 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
-import path from 'path'
+@jmc-codes ➜ /workspaces/jmc.portifolio (main) $ rm -rf dist
+@jmc-codes ➜ /workspaces/jmc.portifolio (main) $ pnpm run build
 
-// https://vite.dev/config/
-export default defineConfig({
-  plugins: [react(),tailwindcss()],
-  base: '/jmc.portifolio/',
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
-})
+> johnathan-portfolio@0.0.0 build /workspaces/jmc.portifolio
+> vite build
+
+vite v6.3.5 building for production...
+file:///workspaces/jmc.portifolio/node_modules/.pnpm/vite@6.3.5_jiti@2.4.2_lightningcss@1.30.1/node_modules/vite/dist/node/chunks/dep-DBxKXgDP.js:36310
+                            new Error(`Failed to resolve ${url} from ${id}`)
+                            ^
+
+Error: Failed to resolve /jmc.portifolio/assets/index-nAEsMzF6.js from /workspaces/jmc.portifolio/index.html
+    at file:///workspaces/jmc.portifolio/node_modules/.pnpm/vite@6.3.5_jiti@2.4.2_lightningcss@1.30.1/node_modules/vite/dist/node/chunks/dep-DBxKXgDP.js:36310:29
+
+Node.js v22.17.0
+ ELIFECYCLE  Command failed with exit code 1.
+@jmc-codes ➜ /workspaces/jmc.portifolio (main) $ 
