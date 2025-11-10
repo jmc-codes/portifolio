@@ -1,4 +1,10 @@
 const handleDownloadCV = () => {
-    // Placeholder for CV download functionality
-    console.log('Download CV clicked');
-  };
+  console.log('Iniciando download...');
+  const link = document.createElement('a');
+  link.href = '/CV.pdf';
+  link.download = 'Johnathan_Campos_CV.pdf';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  console.log('Download iniciado!');
+};
