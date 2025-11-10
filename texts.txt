@@ -1,13 +1,58 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Johnathan Campos | Analista de Dados & BI</title>
-    <script type="module" src="/src/main.jsx"></script>
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
-</html>
+@jmc-codes ➜ /workspaces/jmc.portifolio (main) $ rm -rf dist
+@jmc-codes ➜ /workspaces/jmc.portifolio (main) $ pnpm run build
+
+> johnathan-portfolio@0.0.0 build /workspaces/jmc.portifolio
+> vite build
+
+vite v6.3.5 building for production...
+transforming (7) node_modules/.pnpm/react@19.1.0/node_modules/react/index.jsBrowserslist: browsers data (caniuse-lite) is 6 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+✓ 1657 modules transformed.
+dist/index.html                     0.53 kB │ gzip:   0.33 kB
+dist/assets/index-Bwb0Xk9z.css    120.29 kB │ gzip:  19.09 kB
+dist/assets/index-D72FiPmr.js   1,196.44 kB │ gzip: 277.20 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 5.18s
+@jmc-codes ➜ /workspaces/jmc.portifolio (main) $ pnpm run deploy
+
+> johnathan-portfolio@0.0.0 predeploy /workspaces/jmc.portifolio
+> pnpm run build
+
+
+> johnathan-portfolio@0.0.0 build /workspaces/jmc.portifolio
+> vite build
+
+vite v6.3.5 building for production...
+transforming (5) node_modules/.pnpm/react@19.1.0/node_modules/react/cjs/react-jsx-runtime.production.jsBrowserslist: browsers data (caniuse-lite) is 6 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+✓ 1657 modules transformed.
+dist/index.html                     0.53 kB │ gzip:   0.33 kB
+dist/assets/index-Bwb0Xk9z.css    120.29 kB │ gzip:  19.09 kB
+dist/assets/index-D72FiPmr.js   1,196.44 kB │ gzip: 277.20 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 5.76s
+
+> johnathan-portfolio@0.0.0 deploy /workspaces/jmc.portifolio
+> gh-pages -d dist
+
+ProcessError: error: Your local changes to the following files would be overwritten by checkout:
+        src/App.jsx
+Please commit your changes or stash them before you switch branches.
+Aborting
+
+    at ChildProcess.<anonymous> (/workspaces/jmc.portifolio/node_modules/.pnpm/gh-pages@6.3.0/node_modules/gh-pages/lib/git.js:42:16)
+    at ChildProcess.emit (node:events:518:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:304:5)
+ ELIFECYCLE  Command failed with exit code 1.
+@jmc-codes ➜ /workspaces/jmc.portifolio (main) $ 
