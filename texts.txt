@@ -1,37 +1,17 @@
-client:882 [vite] SyntaxError: Unexpected token ','
-error @ client:882Understand this error
-client:882 [vite] Failed to reload /src/components/Header.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
-error @ client:882Understand this error
-client:882 [vite] SyntaxError: Unexpected token ','
-error @ client:882Understand this error
-client:882 [vite] Failed to reload /src/components/About.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
-error @ client:882Understand this error
-client:882 [vite] SyntaxError: Unexpected token ','
-error @ client:882Understand this error
-client:882 [vite] Failed to reload /src/components/Experience.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
-error @ client:882Understand this error
-client:882 [vite] SyntaxError: Unexpected token ','
-error @ client:882Understand this error
-client:882 [vite] Failed to reload /src/components/Projects.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
-error @ client:882Understand this error
-client:882 [vite] SyntaxError: Unexpected token ','
-error @ client:882Understand this error
-client:882 [vite] Failed to reload /src/components/Hero.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
-error @ client:882Understand this error
-client:882 [vite] SyntaxError: Unexpected token ','
-error @ client:882Understand this error
-client:882 [vite] Failed to reload /src/components/Contact.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
-error @ client:882Understand this error
-client:882 [vite] SyntaxError: Unexpected token ','
-error @ client:882Understand this error
-client:882 [vite] Failed to reload /src/components/Header.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
-error @ client:882Understand this error
-client:882 [vite] SyntaxError: Unexpected token ','
-error @ client:882Understand this error
-client:882 [vite] Failed to reload /src/components/Skills.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
-error @ client:882Understand this error
-jmc.portifolio/src/index.css?t=1762957235449:1  Failed to load resource: the server responded with a status of 500 (Internal Server Error)Understand this error
-client:882 [vite] Failed to reload /src/index.css. This could be due to syntax errors or importing non-existent modules. (see errors above)
-error @ client:882Understand this error
-jmc.portifolio/src/index.css?t=1762957238672:1  Failed to load resource: the server responded with a status of 500 (Internal Server Error)Understand this error
-client:882 [vite] Failed to reload /src/index.css. This could be due to syntax errors or importing non-existent modules. (see errors above)
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './index.css';
+import App from './App.jsx';
+import DownloadPage from './DownloadPage.jsx';
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/downloads" element={<DownloadPage />} />
+      </Routes>
+    </BrowserRouter>
+  </StrictMode>
+);
