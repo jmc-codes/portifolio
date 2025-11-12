@@ -1,244 +1,140 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Card, CardContent } from './ui/card';
-import { Badge } from './ui/badge';
-import { portfolioData } from '../data/portfolio';
+import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import * as LucideIcons from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Skills = () => {
-  const sectionRef = useRef(null);
-  const skillsRef = useRef(null);
-  const certificationsRef = useRef(null);
-  const [activeCategory, setActiveCategory] = useState(Object.keys(portfolioData.skills)[0]);
+const ScrollProgressBar = () => {
+  const progressRef = useRef(null);
+  const circleRef = useRef(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Animate section entrance
-      gsap.fromTo(sectionRef.current.querySelector('.section-header'),
-        {
-          opacity: 0,
-          y: 50
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      );
+    const progress = progressRef.current;
+    const circle = circleRef.current;
+    if (!progress || !circle) return;
 
-      // Animate skill cards
-      const skillCards = skillsRef.current?.querySelectorAll('.skill-card');
-      if (skillCards) {
-        gsap.fromTo(skillCards,
-          {
-            opacity: 0,
-            y: 30,
-            scale: 0.9
-          },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.6,
-            stagger: 0.1,
-            ease: "back.out(1.7)",
-            scrollTrigger: {
-              trigger: skillsRef.current,
-              start: "top 80%",
-              end: "bottom 20%",
-              toggleActions: "play none none reverse"
-            }
-          }
-        );
-      }
+    // Scroll progress bar animation
+    gsap.to(progress, {
+      scaleX: 1,
+      transformOrigin: "left center",
+      ease: "none",
+      scrollTrigger: {
+        trigger: document.body,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 0.3,
+      },
+    });
 
-      // Animate skill progress bars
-      const progressBars = skillsRef.current?.querySelectorAll('.skill-progress');
-      if (progressBars) {
-        progressBars.forEach((bar) => {
-          const width = bar.dataset.width;
-          gsap.fromTo(bar,
-            { width: '0%' },
-            {
-              width: width + '%',
-              duration: 1.5,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: bar,
-                start: "top 85%",
-                end: "bottom 15%",
-                toggleActions: "play none none reverse"
-              }
-            }
-          );
-        });
-      }
+    // Circular progress animation
+    const circumference = 2 * Math.PI * 20; // radius = 20
+    circle.style.strokeDasharray = circumference;
+    circle.style.strokeDashoffset = circumference;
 
-      // Animate certifications
-      const certCards = certificationsRef.current?.querySelectorAll('.cert-card');
-      if (certCards) {
-        gsap.fromTo(certCards,
-          {
-            opacity: 0,
-            y: 30,
-            rotationY: 45
-          },
-          {
-            opacity: 1,
-            y: 0,
-            rotationY: 0,
-            duration: 0.8,
-            stagger: 0.1,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: certificationsRef.current,
-              start: "top 80%",
-              end: "bottom 20%",
-              toggleActions: "play none none reverse"
-            }
-          }
-        );
-      }
+    gsap.to(circle, {
+      strokeDashoffset: 0,
+      ease: "none",
+      scrollTrigger: {
+        trigger: document.body,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 0.3,
+      },
+    });
 
-    }, sectionRef);
+    // Hover effect
+    const circleContainer = circle.parentElement;
+    circleContainer.addEventListener('mouseenter', () => {
+      gsap.to(circle, {
+        scale: 1.1,
+        duration: 0.3,
+        ease: "back.out(1.7)",
+      });
+    });
 
-    return () => ctx.revert();
-  }, [activeCategory]);
+    circleContainer.addEventListener('mouseleave', () => {
+      gsap.to(circle, {
+        scale: 1,
+        duration: 0.3,
+        ease: "back.out(1.7)",
+      });
+    });
 
-  const getIcon = (iconName) => {
-    const Icon = LucideIcons[iconName];
-    return Icon ? <Icon className="h-5 w-5" /> : null;
-  };
+    // Scroll to top on click
+    circleContainer.addEventListener('click', () => {
+      gsap.to(window, {
+        scrollTo: { y: 0 },
+        duration: 1.5,
+        ease: "power2.out",
+      });
+    });
+  }, []);
 
   return (
-    <section id="skills" ref={sectionRef} className="py-20 bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
-          <div className="section-header text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-              Minhas <span className="text-gradient">Habilidades</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Tecnologias e competências que domino para entregar soluções de qualidade
-            </p>
-          </div>
+    <>
+      {/* Linear Progress Bar */}
+      <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-border/20">
+        <div
+          ref={progressRef}
+          className="h-full bg-gradient-to-r from-primary to-accent origin-left scale-x-0"
+        />
+      </div>
 
-          {/* Skills Categories */}
-          <div className="mb-12">
-            <div className="flex flex-wrap justify-center gap-4 mb-8">
-              {Object.keys(portfolioData.skills).map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setActiveCategory(category)}
-                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                    activeCategory === category
-                      ? 'bg-primary text-primary-foreground shadow-lg'
-                      : 'bg-secondary text-secondary-foreground hover:bg-primary/10'
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
+      {/* Circular Progress Indicator */}
+      <div className="fixed bottom-8 right-8 z-50">
+        <div className="relative w-12 h-12 cursor-pointer group">
+          <svg
+            className="w-12 h-12 transform -rotate-90 transition-transform group-hover:scale-110"
+            viewBox="0 0 44 44"
+          >
+            <circle
+              cx="22"
+              cy="22"
+              r="20"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              className="text-border/20"
+            />
+            <circle
+              ref={circleRef}
+              cx="22"
+              cy="22"
+              r="20"
+              fill="none"
+              stroke="url(#gradient)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              className="transition-all duration-300"
+            />
+            <defs>
+              <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="hsl(264, 50%, 50%)" />
+                <stop offset="100%" stopColor="hsl(45, 70%, 60%)" />
+              </linearGradient>
+            </defs>
+          </svg>
 
-            {/* Skills Grid */}
-            <div ref={skillsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {portfolioData.skills[activeCategory]?.map((skill, index) => (
-                <Card key={`${activeCategory}-${index}`} className="skill-card card-hover">
-                  <CardContent className="p-6">
-                    <div className="flex items-center space-x-3 mb-4">
-                      <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
-                        {getIcon(skill.icon)}
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-lg">{skill.name}</h3>
-                        <p className="text-sm text-muted-foreground">{skill.level}%</p>
-                      </div>
-                    </div>
-                    
-                    {/* Progress Bar */}
-                    <div className="skill-bar h-2">
-                      <div 
-                        className="skill-progress h-full"
-                        data-width={skill.level}
-                      />
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          {/* Certifications */}
-          <div>
-            <h3 className="text-2xl font-bold mb-8 text-center">
-              Certificações & <span className="text-gradient">Cursos</span>
-            </h3>
-            
-            <div ref={certificationsRef} className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {portfolioData.certifications.map((cert, index) => (
-                <Card key={index} className="cert-card card-hover text-center">
-                  <CardContent className="p-6">
-                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mx-auto mb-4">
-                      {getIcon(cert.icon)}
-                    </div>
-                    
-                    <h4 className="font-semibold mb-3 text-sm leading-tight">
-                      {cert.name}
-                    </h4>
-                    
-                    <div className="relative">
-                      <div className="w-16 h-16 mx-auto">
-                        <svg className="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
-                          <path
-                            className="text-secondary"
-                            stroke="currentColor"
-                            strokeWidth="3"
-                            fill="none"
-                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                          />
-                          <path
-                            className="text-primary"
-                            stroke="currentColor"
-                            strokeWidth="3"
-                            strokeDasharray={`${cert.progress}, 100`}
-                            strokeLinecap="round"
-                            fill="none"
-                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                          />
-                        </svg>
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <span className="text-xs font-bold text-primary">
-                            {cert.progress}%
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <Badge variant="secondary" className="mt-3">
-                      Concluído
-                    </Badge>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+          {/* Arrow Icon */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <svg
+              className="w-4 h-4 text-foreground transition-transform group-hover:-translate-y-0.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 10l7-7m0 0l7 7m-7-7v18"
+              />
+            </svg>
           </div>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 
-export default Skills;
-
+export default ScrollProgressBar;
