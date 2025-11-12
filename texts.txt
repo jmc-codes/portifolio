@@ -1,32 +1,3 @@
-@jmc-codes ➜ /workspaces/jmc.portifolio (main) $ git --version
-git version 2.50.1
-@jmc-codes ➜ /workspaces/jmc.portifolio (main) $ pnpm add gh-pages -D
-
-   ╭───────────────────────────────────────────────────────────────────╮
-   │                                                                   │
-   │                Update available! 10.4.1 → 10.22.0.                │
-   │   Changelog: https://github.com/pnpm/pnpm/releases/tag/v10.22.0   │
-   │                 Run "pnpm add -g pnpm" to update.                 │
-   │                                                                   │
-   ╰───────────────────────────────────────────────────────────────────╯
-
-Packages: +59
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Progress: resolved 517, reused 0, downloaded 446, added 59, done
- WARN  Issues with peer dependencies found
-.
-└─┬ react-day-picker 8.10.1
-  ├── ✕ unmet peer date-fns@"^2.28.0 || ^3.0.0": found 4.1.0
-  └── ✕ unmet peer react@"^16.8.0 || ^17.0.0 || ^18.0.0": found 19.1.0
-
-╭ Warning ───────────────────────────────────────────────────────────────────────────────────╮
-│                                                                                            │
-│   Ignored build scripts: @tailwindcss/oxide.                                               │
-│   Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.   │
-│                                                                                            │
-╰────────────────────────────────────────────────────────────────────────────────────────────╯
-
-Done in 31.2s using pnpm v10.4.1
 @jmc-codes ➜ /workspaces/jmc.portifolio (main) $ pnpm run deploy
 
 > johnathan-portfolio@0.0.0 predeploy /workspaces/jmc.portifolio
@@ -49,20 +20,41 @@ dist/assets/index-DxJmJ5rz.js   1,241.22 kB │ gzip: 292.54 kB
 - Using dynamic import() to code-split the application
 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
-✓ built in 12.99s
+✓ built in 6.63s
 
 > johnathan-portfolio@0.0.0 deploy /workspaces/jmc.portifolio
 > gh-pages -d dist
 
-ProcessError: error: Your local changes to the following files would be overwritten by checkout:
-        node_modules/.bin/gh-pages
-        node_modules/.bin/gh-pages-clean
-Please commit your changes or stash them before you switch branches.
-Aborting
+Published
+@jmc-codes ➜ /workspaces/jmc.portifolio (gh-pages) $ git checkout main
+Updating files: 100% (68775/68775), done.
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 2 commits.
+  (use "git push" to publish your local commits)
+@jmc-codes ➜ /workspaces/jmc.portifolio (main) $ pnpm run dev
 
-    at ChildProcess.<anonymous> (/workspaces/jmc.portifolio/node_modules/.pnpm/gh-pages@6.3.0/node_modules/gh-pages/lib/git.js:42:16)
-    at ChildProcess.emit (node:events:518:28)
-    at maybeClose (node:internal/child_process:1101:16)
-    at ChildProcess._handle.onexit (node:internal/child_process:304:5)
+> johnathan-portfolio@0.0.0 dev /workspaces/jmc.portifolio
+> vite
+
+sh: 1: vite: not found
+ ELIFECYCLE  Command failed.
+@jmc-codes ➜ /workspaces/jmc.portifolio (main) $ pnpm run dev
+
+> johnathan-portfolio@0.0.0 dev /workspaces/jmc.portifolio
+> vite
+
+sh: 1: vite: not found
+ ELIFECYCLE  Command failed.
+@jmc-codes ➜ /workspaces/jmc.portifolio (main) $ pnpm run deploy
+
+> johnathan-portfolio@0.0.0 predeploy /workspaces/jmc.portifolio
+> pnpm run build
+
+
+> johnathan-portfolio@0.0.0 build /workspaces/jmc.portifolio
+> vite build
+
+sh: 1: vite: not found
+ ELIFECYCLE  Command failed.
  ELIFECYCLE  Command failed with exit code 1.
 @jmc-codes ➜ /workspaces/jmc.portifolio (main) $ 
