@@ -1,88 +1,48 @@
-{
-  "name": "johnathan-portfolio",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "predeploy": "pnpm run build",
-    "deploy": "gh-pages -d dist"
-  },
-  "dependencies": {
-    "@emailjs/browser": "^4.4.1",
-    "@hookform/resolvers": "^5.0.1",
-    "@radix-ui/react-accordion": "^1.2.10",
-    "@radix-ui/react-alert-dialog": "^1.1.13",
-    "@radix-ui/react-aspect-ratio": "^1.1.6",
-    "@radix-ui/react-avatar": "^1.1.9",
-    "@radix-ui/react-checkbox": "^1.3.1",
-    "@radix-ui/react-collapsible": "^1.1.10",
-    "@radix-ui/react-context-menu": "^2.2.14",
-    "@radix-ui/react-dialog": "^1.1.13",
-    "@radix-ui/react-dropdown-menu": "^2.1.14",
-    "@radix-ui/react-hover-card": "^1.1.13",
-    "@radix-ui/react-label": "^2.1.6",
-    "@radix-ui/react-menubar": "^1.1.14",
-    "@radix-ui/react-navigation-menu": "^1.2.12",
-    "@radix-ui/react-popover": "^1.1.13",
-    "@radix-ui/react-progress": "^1.1.6",
-    "@radix-ui/react-radio-group": "^1.3.6",
-    "@radix-ui/react-scroll-area": "^1.2.8",
-    "@radix-ui/react-select": "^2.2.4",
-    "@radix-ui/react-separator": "^1.1.6",
-    "@radix-ui/react-slider": "^1.3.4",
-    "@radix-ui/react-slot": "^1.2.2",
-    "@radix-ui/react-switch": "^1.2.4",
-    "@radix-ui/react-tabs": "^1.1.11",
-    "@radix-ui/react-toggle": "^1.1.8",
-    "@radix-ui/react-toggle-group": "^1.1.9",
-    "@radix-ui/react-tooltip": "^1.2.6",
-    "@tailwindcss/vite": "^4.1.7",
-    "autoprefixer": "^10.4.21",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "cmdk": "^1.1.1",
-    "date-fns": "^4.1.0",
-    "embla-carousel-react": "^8.6.0",
-    "framer-motion": "^12.15.0",
-    "gsap": "^3.13.0",
-    "input-otp": "^1.4.2",
-    "lottie-react": "^2.4.1",
-    "lucide-react": "^0.510.0",
-    "next-themes": "^0.4.6",
-    "postcss": "^8.5.6",
-    "react": "^19.1.0",
-    "react-day-picker": "8.10.1",
-    "react-dom": "^19.1.0",
-    "react-dropdown-menu": "link:@radix\u0002ui/react-dropdown-menu",
-    "react-hook-form": "^7.56.3",
-    "react-intersection-observer": "^9.16.0",
-    "react-resizable-panels": "^3.0.2",
-    "react-router-dom": "^7.6.1",
-    "recharts": "^2.15.3",
-    "sonner": "^2.0.3",
-    "tailwind-merge": "^3.3.0",
-    "tailwindcss": "^4.1.7",
-    "vaul": "^1.1.2",
-    "zod": "link:@hookform/resolvers/zod"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.26.0",
-    "@tailwindcss/postcss": "^4.1.12",
-    "@tailwindcss/typography": "^0.5.16",
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
-    "@vitejs/plugin-react": "^4.4.1",
-    "eslint": "^9.25.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.19",
-    "gh-pages": "^6.3.0",
-    "globals": "^16.0.0",
-    "tw-animate-css": "^1.2.9",
-    "vite": "^6.3.5"
-  },
-  "packageManager": "pnpm@10.4.1+sha512.c753b6c3ad7afa13af388fa6d808035a008e30ea9993f58c6663e2bc5ff21679aa834db094987129aa4d488b86df57f7b634981b2f827cdcacc698cc0cfb88af"
+@jmc-codes ➜ /workspaces/jmc.portifolio (main) $ pnpm run deploy
+
+> johnathan-portfolio@0.0.0 predeploy /workspaces/jmc.portifolio
+> pnpm run build
+
+
+> johnathan-portfolio@0.0.0 build /workspaces/jmc.portifolio
+> vite build
+
+vite v6.3.5 building for production...
+transforming (10) node_modules/.pnpm/react@19.1.0/node_modules/react/jsx-runtime.jsBrowserslist: browsers data (caniuse-lite) is 6 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+✓ 1668 modules transformed.
+dist/index.html                     0.53 kB │ gzip:   0.33 kB
+dist/assets/index-CpcIh_2x.css    120.54 kB │ gzip:  19.11 kB
+dist/assets/index-DxJmJ5rz.js   1,241.22 kB │ gzip: 292.54 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 6.24s
+
+> johnathan-portfolio@0.0.0 deploy /workspaces/jmc.portifolio
+> gh-pages -d dist
+
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: spawn git ENOENT
+    at ChildProcess._handle.onexit (node:internal/child_process:285:19)
+    at onErrorNT (node:internal/child_process:483:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+Emitted 'error' event on ChildProcess instance at:
+    at ChildProcess._handle.onexit (node:internal/child_process:291:12)
+    at onErrorNT (node:internal/child_process:483:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'spawn git',
+  path: 'git',
+  spawnargs: [ 'clean', '-f', '-d' ]
 }
+
+Node.js v22.17.0
+ ELIFECYCLE  Command failed with exit code 1.
