@@ -1,61 +1,100 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import Header from './components/Header';
-import AnimatedBackground from './components/AnimatedBackground';
-import ScrollProgressBar from './components/ScrollProgressBar';
+#!/usr/bin/env python3
+"""
+rotina_api.py
+1. Faz login via POST e obtém token.
+2. Usa o token em outra requisição GET com Authorization Bearer.
+3. Salva resposta JSON em /data e erros em /errors.
+"""
 
-function DownloadPage() {
-    const navigate = useNavigate();
+import requests
+import json
+from datetime import datetime, timezone
+from pathlib import Path
+import traceback
 
-    const arquivos = [
-        { nome: '📊 Arquivos Career', link: './arqs/CarMa.zip' },
-        { nome: '📊 Form Monit Cht', link: '/arqs/Form_Monit_Cht_V5.0.1.OLD' },
-        { nome: '📊 Form Monit Lgc', link: '/arqs/Form_Monit_Lgc_V5.0.1.OLD' },
-    ];
+# ---------------- CONFIGURAÇÃO ----------------
+LOGIN_URL = "https://exemplo.com/api/login"           # URL do login
+DATA_URL = "https://exemplo.com/api/dados"            # URL dos dados após login
+OUTPUT_DIR = Path("data")                             # Pasta para salvar JSONs
+ERROR_DIR = Path("errors")                            # Pasta para salvar erros
+TIMEOUT = 20                                          # Timeout das requisições
+KEEP_DAYS = 30                                        # (opcional) manter arquivos
+# --------------------------------------------------
 
-    return (
-        <div className="DownloadPage relative aurora-background min-h-screen flex items-center justify-center">
-            <AnimatedBackground />
-            <ScrollProgressBar />
-            <Header />
+def ensure_dirs():
+    """Cria as pastas data/ e errors/ caso não existam."""
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    ERROR_DIR.mkdir(parents=True, exist_ok=True)
 
-            {/* Container branco centralizado */}
-            <main className="relative z-10 bg-white rounded-lg shadow-lg max-w-2xl w-full p-8 text-center">
-                <h1 className="text-4xl font-bold mb-6 text-gray-800">
-                    Área de Downloads
-                </h1>
-                <p className="mb-10 text-lg text-gray-600">
-                    Baixe aqui os arquivos e materiais disponíveis no site.
-                </p>
+def log_error(msg: str, exc: Exception = None):
+    """Salva erro em arquivo .log na pasta errors/."""
+    ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+    filename = ERROR_DIR / f"erro_{ts}.log"
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(f"[{datetime.now(timezone.utc)}] {msg}\n")
+        if exc:
+            f.write(traceback.format_exc())
+    print(f"Erro registrado em: {filename}")
 
-                {/* Grid de botões */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-                    {arquivos.map((arq, index) => (
-                        <a
-                            key={index}
-                            href={arq.link}
-                            download
-                            className="bg-gradient-to-r from-blue-600 to-blue-800 
-                         hover:from-blue-700 hover:to-blue-900 
-                         text-white py-4 px-6 rounded-lg shadow-lg 
-                         transition btn-shine subtle-float"
-                        >
-                            {arq.nome}
-                        </a>
-                    ))}
-                </div>
+def fazer_login():
+    """Envia POST para obter token."""
+    try:
+        payload = {
+            "usuario": "seu_usuario",
+            "senha": "sua_senha"
+        }
+        print("Fazendo login...")
+        resp = requests.post(LOGIN_URL, json=payload, timeout=TIMEOUT)
+        resp.raise_for_status()
 
-                {/* Botão voltar */}
-                <button
-                    onClick={() => navigate('/')}
-                    className="bg-gray-200 hover:bg-gray-300 text-gray-800 
-                    py-3 px-6 rounded-lg shadow-md transition"
-                >
-                    ⬅️ Voltar à página inicial
-                </button>
-            </main>
-        </div>
-    );
-}
+        data = resp.json()
+        token = data.get("token") or data.get("access_token")
 
-export default DownloadPage;
+        if not token:
+            raise ValueError("Token não encontrado na resposta de login.")
+
+        print("Login bem-sucedido.")
+        return token
+
+    except Exception as e:
+        log_error("Falha no login", e)
+        raise
+
+def consumir_dados(token: str):
+    """Usa o token para acessar os dados protegidos."""
+    try:
+        headers = {
+            "Authorization": f"Bearer {token}"
+        }
+
+        print("Consumindo dados...")
+        resp = requests.get(DATA_URL, headers=headers, timeout=TIMEOUT)
+        resp.raise_for_status()
+        data = resp.json()
+        print("Dados recebidos com sucesso.")
+        return data
+
+    except Exception as e:
+        log_error("Falha ao consumir dados", e)
+        raise
+
+def salvar_json(data):
+    """Salva os dados JSON na pasta data/ com timestamp."""
+    ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+    filename = OUTPUT_DIR / f"dados_{ts}.json"
+    with open(filename, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    print(f"Arquivo salvo em: {filename}")
+
+def main():
+    ensure_dirs()
+    try:
+        token = fazer_login()
+        dados = consumir_dados(token)
+        salvar_json(dados)
+    except Exception as e:
+        print(f"Erro geral na rotina: {e}")
+        # o log já é salvo em log_error()
+
+if __name__ == "__main__":
+    main()
