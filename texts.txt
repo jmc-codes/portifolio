@@ -1,60 +1,50 @@
-@jmc-codes ➜ /workspaces/jmc.portifolio (main) $ pnpm run deploy
+import React from 'react';
+import Header from './components/Header';
+import AnimatedBackground from './components/AnimatedBackground';
+import ScrollProgressBar from './components/ScrollProgressBar';
 
-> johnathan-portfolio@0.0.0 predeploy /workspaces/jmc.portifolio
-> pnpm run build
+function DownloadPage() {
+    const arquivos = [
+        { nome: '📊 Arquivos Career', link: './arqs/CarMa.zip' },
+        { nome: '📊 Form Monit Cht', link: '/arqs/Form_Monit_Cht_V5.0.1.OLD' },
+        { nome: '📊 Form Monit Lgc', link: '/arqs/Form_Monit_Lgc_V5.0.1.OLD' },
+        
+    ];
 
+    return (
+        <div className="DownloadPage relative aurora-background min-h-screen flex items-center justify-center">
+            <AnimatedBackground />
+            <ScrollProgressBar />
+            <Header />
 
-> johnathan-portfolio@0.0.0 build /workspaces/jmc.portifolio
-> vite build
+            {/* Container branco centralizado */}
+            <main className="relative z-10 bg-white rounded-lg shadow-lg max-w-2xl w-full p-8 text-center">
+                <h1 className="text-4xl font-bold mb-6 text-gray-800">
+                    Área de Downloads
+                </h1>
+                <p className="mb-10 text-lg text-gray-600">
+                    Baixe aqui os arquivos e materiais disponíveis no site.
+                </p>
 
-vite v6.3.5 building for production...
-transforming (1) src/main.jsxBrowserslist: browsers data (caniuse-lite) is 6 months old. Please run:
-  npx update-browserslist-db@latest
-  Why you should do it regularly: https://github.com/browserslist/update-db#readme
-✓ 1668 modules transformed.
-dist/index.html                     0.53 kB │ gzip:   0.33 kB
-dist/assets/index-CpcIh_2x.css    120.54 kB │ gzip:  19.11 kB
-dist/assets/index-DxJmJ5rz.js   1,241.22 kB │ gzip: 292.54 kB
+                {/* Grid de botões */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {arquivos.map((arq, index) => (
+                        <a
+                            key={index}
+                            href={arq.link}
+                            download
+                            className="bg-gradient-to-r from-blue-600 to-blue-800 
+                         hover:from-blue-700 hover:to-blue-900 
+                         text-white py-4 px-6 rounded-lg shadow-lg 
+                         transition btn-shine subtle-float"
+                        >
+                            {arq.nome}
+                        </a>
+                    ))}
+                </div>
+            </main>
+        </div>
+    );
+}
 
-(!) Some chunks are larger than 500 kB after minification. Consider:
-- Using dynamic import() to code-split the application
-- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
-- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
-✓ built in 6.63s
-
-> johnathan-portfolio@0.0.0 deploy /workspaces/jmc.portifolio
-> gh-pages -d dist
-
-Published
-@jmc-codes ➜ /workspaces/jmc.portifolio (gh-pages) $ git checkout main
-Updating files: 100% (68775/68775), done.
-Switched to branch 'main'
-Your branch is ahead of 'origin/main' by 2 commits.
-  (use "git push" to publish your local commits)
-@jmc-codes ➜ /workspaces/jmc.portifolio (main) $ pnpm run dev
-
-> johnathan-portfolio@0.0.0 dev /workspaces/jmc.portifolio
-> vite
-
-sh: 1: vite: not found
- ELIFECYCLE  Command failed.
-@jmc-codes ➜ /workspaces/jmc.portifolio (main) $ pnpm run dev
-
-> johnathan-portfolio@0.0.0 dev /workspaces/jmc.portifolio
-> vite
-
-sh: 1: vite: not found
- ELIFECYCLE  Command failed.
-@jmc-codes ➜ /workspaces/jmc.portifolio (main) $ pnpm run deploy
-
-> johnathan-portfolio@0.0.0 predeploy /workspaces/jmc.portifolio
-> pnpm run build
-
-
-> johnathan-portfolio@0.0.0 build /workspaces/jmc.portifolio
-> vite build
-
-sh: 1: vite: not found
- ELIFECYCLE  Command failed.
- ELIFECYCLE  Command failed with exit code 1.
-@jmc-codes ➜ /workspaces/jmc.portifolio (main) $ 
+export default DownloadPage;
