@@ -1,14 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from './components/Header';
 import AnimatedBackground from './components/AnimatedBackground';
 import ScrollProgressBar from './components/ScrollProgressBar';
 
 function DownloadPage() {
+    const navigate = useNavigate();
+
     const arquivos = [
         { nome: '📊 Arquivos Career', link: './arqs/CarMa.zip' },
         { nome: '📊 Form Monit Cht', link: '/arqs/Form_Monit_Cht_V5.0.1.OLD' },
         { nome: '📊 Form Monit Lgc', link: '/arqs/Form_Monit_Lgc_V5.0.1.OLD' },
-        
     ];
 
     return (
@@ -27,7 +29,7 @@ function DownloadPage() {
                 </p>
 
                 {/* Grid de botões */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
                     {arquivos.map((arq, index) => (
                         <a
                             key={index}
@@ -42,6 +44,15 @@ function DownloadPage() {
                         </a>
                     ))}
                 </div>
+
+                {/* Botão voltar */}
+                <button
+                    onClick={() => navigate('/')}
+                    className="bg-gray-200 hover:bg-gray-300 text-gray-800 
+                    py-3 px-6 rounded-lg shadow-md transition"
+                >
+                    ⬅️ Voltar à página inicial
+                </button>
             </main>
         </div>
     );
